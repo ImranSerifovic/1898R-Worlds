@@ -67,6 +67,8 @@ void pre_auton(void) {
 }
 /*---------------------------------------------------------------------------*/
 
+
+
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                                  AUTONS                                   */
@@ -83,14 +85,69 @@ void autonomous(void) {
 
 
 /*---------------------------------------------------------------------------*/
+/*                              OTHER FUNCTIONS                              */
+/*---------------------------------------------------------------------------*/
+// Flaps
+void Flaps() { 
+  LeftFlap.set(!LeftFlap.value());
+  RightFlap.set(!RightFlap.value());
+}
+
+// Left Back Flap
+void LeftBackFlap() { 
+  BackLeftFlap.set(!BackLeftFlap.value());
+}
+
+// Right Back Flap
+void RightBackFlap() { 
+  BackRightFlap.set(!BackRightFlap.value());
+}
+
+// PTO
+void setPTO() { 
+  PTO.set(!PTO.value());
+}
+
+// Pneumatic Shut-Off
+void falsePistons() { 
+  LeftFlap.set(false);
+  RightFlap.set(false);
+  BackLeftFlap.set(false);
+  BackRightFlap.set(false);
+  PTO.set(false);
+}
+/*---------------------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                                DRIVE SECTION                              */
 /*                                                                           */
 /*---------------------------------------------------------------------------*/
 void usercontrol(void) {
+  // set all pistons to false as a failsafe
+  falsePistons();
+
   while (1) {
-    
-    //type of control(currently tank)
+
+    // Intake
+    if (Controller1.ButtonR1.pressing()) {
+      Intake.spin(forward, 100,  voltageUnits::volt);
+    } 
+    else if (Controller1.ButtonR2.pressing()) {
+       Intake.spin(reverse, 100,  voltageUnits::volt);
+    } 
+    else {
+      Intake.stop();
+    }
+
+    // Callbacks for pistons
+    Controller1.ButtonL2.pressed(Flaps);
+    Controller1.ButtonA.pressed(RightBackFlap);
+    Controller1.ButtonLeft.pressed(LeftBackFlap);
+    Controller1.ButtonB.pressed(setPTO);
+
+    // type of control(currently tank)
     chassis.control_tank();
     wait(20, msec); 
   }
@@ -101,13 +158,15 @@ void usercontrol(void) {
 /*---------------------------------------------------------------------------*/
 //sets up competition functions and callbacks
 int main() {
-  
+  // Set all pistons to false at start 
+  falsePistons();
+
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
 
   //run pre-auton
   pre_auton();
-
+  
   //failsaife
   while (true) {
     wait(100, msec);
