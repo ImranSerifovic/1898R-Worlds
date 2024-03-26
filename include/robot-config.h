@@ -13,8 +13,6 @@ extern motor Right2;
 extern motor Right3;
 extern motor Right4;
 extern inertial Inertial1;
-extern inertial Inertial2;
-extern inertial Inertial3;
 extern motor Intake;
 extern digital_out LeftFlap;
 extern digital_out RightFlap;
