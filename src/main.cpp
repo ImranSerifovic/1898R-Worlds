@@ -6,12 +6,12 @@ competition Competition;
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
-// Left1                motor         6               
-// Left2                motor         8               
+// Left1                motor         8               
+// Left2                motor         9               
 // Left3                motor         7               
-// Left4                motor         9               
-// Right1               motor         3               
-// Right2               motor         4               
+// Left4                motor         6               
+// Right1               motor         4               
+// Right2               motor         3               
 // Right3               motor         5               
 // Right4               motor         2               
 // Inertial1            inertial      21              
