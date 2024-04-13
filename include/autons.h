@@ -11,3 +11,4 @@ void default_constants();
 void FarSideSafe();
 void CloseSideSafe();
 void CloseSideRush();
+void pidTest();

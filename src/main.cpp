@@ -16,11 +16,11 @@ competition Competition;
 // Right4               motor         2               
 // Inertial1            inertial      21              
 // Intake               motor         1               
-// LeftFlap             digital_out   A               
-// RightFlap            digital_out   B               
 // BackLeftFlap         digital_out   C               
-// BackRightFlap        digital_out   D               
-// PTO                  digital_out   E               
+// BackRightFlap        digital_out   B               
+// PTO                  digital_out   F               
+// flaps                digital_out   A               
+// hangRelease          digital_out   G               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 /*---------------------------------------------------------------------------*/
@@ -75,7 +75,7 @@ void pre_auton(void) {
 void autonomous(void) {
   auto_started = true;
   //put auton here
-
+  pidTest();
 }
 /*---------------------------------------------------------------------------*/
 
@@ -87,8 +87,7 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 // Flaps
 void Flaps() { 
-  LeftFlap.set(!LeftFlap.value());
-  RightFlap.set(!RightFlap.value());
+  flaps.set(!flaps.value());
 }
 
 // Left Back Flap
@@ -106,13 +105,18 @@ void setPTO() {
   PTO.set(!PTO.value());
 }
 
+// Hang Release
+void HangRelease() {
+  hangRelease.set(!hangRelease.value());
+}
+
 // Pneumatic Shut-Off
 void falsePistons() { 
-  LeftFlap.set(false);
-  RightFlap.set(false);
+  flaps.set(false);
   BackLeftFlap.set(false);
   BackRightFlap.set(false);
   PTO.set(false);
+  hangRelease.set(false);
 }
 /*---------------------------------------------------------------------------*/
 
@@ -144,6 +148,7 @@ void usercontrol(void) {
     Controller1.ButtonA.pressed(RightBackFlap);
     Controller1.ButtonLeft.pressed(LeftBackFlap);
     Controller1.ButtonB.pressed(setPTO);
+    Controller1.ButtonDown.pressed(HangRelease);
 
     // type of control(currently tank)
     chassis.control_tank();

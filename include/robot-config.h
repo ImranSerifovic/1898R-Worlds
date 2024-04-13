@@ -14,11 +14,11 @@ extern motor Right3;
 extern motor Right4;
 extern inertial Inertial1;
 extern motor Intake;
-extern digital_out LeftFlap;
-extern digital_out RightFlap;
 extern digital_out BackLeftFlap;
 extern digital_out BackRightFlap;
 extern digital_out PTO;
+extern digital_out flaps;
+extern digital_out hangRelease;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

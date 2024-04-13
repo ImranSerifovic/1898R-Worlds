@@ -19,11 +19,11 @@ motor Right3 = motor(PORT5, ratio18_1, false);
 motor Right4 = motor(PORT2, ratio18_1, false);
 inertial Inertial1 = inertial(PORT21);
 motor Intake = motor(PORT1, ratio6_1, false);
-digital_out LeftFlap = digital_out(Brain.ThreeWirePort.A);
-digital_out RightFlap = digital_out(Brain.ThreeWirePort.B);
 digital_out BackLeftFlap = digital_out(Brain.ThreeWirePort.C);
-digital_out BackRightFlap = digital_out(Brain.ThreeWirePort.D);
-digital_out PTO = digital_out(Brain.ThreeWirePort.E);
+digital_out BackRightFlap = digital_out(Brain.ThreeWirePort.B);
+digital_out PTO = digital_out(Brain.ThreeWirePort.F);
+digital_out flaps = digital_out(Brain.ThreeWirePort.A);
+digital_out hangRelease = digital_out(Brain.ThreeWirePort.G);
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
