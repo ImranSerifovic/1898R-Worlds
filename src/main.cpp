@@ -48,7 +48,7 @@ motor_group(Right1, Right2, Right3, Right4),
 PORT21,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
-2.75,
+3,
 
 //External ratio, must be in decimal, in the format of input teeth/output teeth.
 //If your motor has an 84-tooth gear and your wheel has a 60-tooth gear, this value will be 1.4.
@@ -79,24 +79,24 @@ PORT3,     -PORT4,
 //If you are using position tracking, this is the Forward Tracker port (the tracker which runs parallel to the direction of the chassis).
 //If this is a rotation sensor, enter it in "PORT1" format, inputting the port below.
 //If this is an encoder, enter the port as an integer. Triport A will be a "1", Triport B will be a "2", etc.
-3, 
+3,
 
 //Input the Forward Tracker diameter (reverse it to make the direction switch):
-3.25,
+2.75,
 
 //Input Forward Tracker center distance (a positive distance corresponds to a tracker on the right side of the robot, negative is left.)
 //For a zero tracker tank drive with odom, put the positive distance from the center of the robot to the right side of the drive.
 //This distance is in inches:
-6.25, // TODO: RE-MEASURE (HALF WIDTH TO CENTER OF EACH WHEEL)
+-2,
 
 //Input the Sideways Tracker Port, following the same steps as the Forward Tracker Port:
-PORT13, 
+1,
 
 //Sideways tracker diameter (reverse to make the direction switch):
 -2.75,
 
 //Sideways tracker center distance (positive distance is behind the center of the robot, negative is in front):
--7 // TODO: REMEASURE
+5.5
 
 );
 
@@ -120,7 +120,8 @@ void pre_auton(void) {
 void autonomous(void) {
   auto_started = true;
   //put auton here
-  pidTest();
+  // pidTest();
+  CloseSideRush();
 }
 /*---------------------------------------------------------------------------*/
 

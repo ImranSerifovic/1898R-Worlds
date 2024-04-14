@@ -6,24 +6,43 @@ void default_constants(){
   // Constant form: (maxVoltage, kP, kI, kD, startI).
 
 
-  chassis.set_drive_constants(12, 1.2, 0, 0, 0);
-  chassis.set_turn_constants(12, .1, 0, 0, 0);
+  chassis.set_drive_constants(12, 1.3, 0, 1, 0);
+  chassis.set_turn_constants(12, .12, 1, .7, 0);
 
-  chassis.set_heading_constants(6, .4, 0, 1, 0);
+  chassis.set_heading_constants(12, .2, 0, 2, 0);
   
   chassis.set_swing_constants(12, .3, .001, 2, 15);
 
   // Exit condition form: (settle_error, settle_time, timeout).
-  chassis.set_drive_exit_conditions(1.5, 150, 1000);
-  chassis.set_turn_exit_conditions(1, 500, 3000);
+  chassis.set_drive_exit_conditions(1.5, 300, 3000);
+  chassis.set_turn_exit_conditions(2, 300, 5000);
   chassis.set_swing_exit_conditions(1, 300, 3000);
 }
 /*---------------------------------------------------------------------------*/
 
 // PID Test
 void pidTest() { 
-  chassis.turn_to_angle(180);
-  Controller1.Screen.print(Inertial1.angle());
+  Controller1.Screen.print(Inertial1.heading());
+  Controller1.Screen.print(" ");
+  chassis.drive_distance(15, 90);
+  Controller1.Screen.print(Inertial1.heading());
+  Controller1.Screen.print(" ");
+  chassis.drive_distance(1);
+    chassis.drive_distance(0, 180);
+  chassis.drive_distance(1);
+
+  // chassis.turn_to_angle(180);
+  // Controller1.Screen.print(Inertial1.heading());
+  Controller1.Screen.print(" ");
+  chassis.drive_distance(15, 270);
+    chassis.drive_distance(1);
+  chassis.drive_distance(0, 0);
+    chassis.drive_distance(1);
+
+  // chassis.turn_to_angle(0);
+   Controller1.Screen.print(Inertial1.heading());
+  // chassis.turn_to_angle(180);
+  // Controller1.Screen.print(Inertial1.angle());
 
 }
 
@@ -69,28 +88,42 @@ void CloseSideRush() {
   Intake.stop();
   // Drive to get middle acorn
   Intake.spin(forward, 100, voltageUnits::volt);
-  chassis.drive_distance(48);
-  wait(0.3,seconds);
-  Intake.stop();
+  chassis.set_drive_exit_conditions(1.5, 100, 3000);
+  chassis.drive_distance(50.5);
+  chassis.set_drive_exit_conditions(1.5, 300, 3000);
+
+
+
+  // wait(0.3,seconds);
+  Intake.spin(forward, 7, voltageUnits::volt);
+
   // Back up
-  chassis.drive_distance(-36);
+  chassis.drive_distance(-37);
+  chassis.drive_distance(-8, 90, 12, 8);
+  chassis.drive_distance(-14);
+  chassis.drive_distance(-18, 160, 10, 12, 1.5, 300, 1200);
+
+  // chassis.drive_distance(-10, 180);
   // Turn so that the back is parallel with the goal 
-  chassis.drive_distance( -20,  0,  12,  8);
-  // Hopefully score preload
-  chassis.drive_distance(-10);
-  // Drive a bit closer to the bar 
-  chassis.drive_distance(5);
+  // chassis.drive_distance( -20,  0,  12,  8);
+
+
+  chassis.drive_distance(10);
   // Turn to be parallel with match bar
-  chassis.turn_to_angle(135);
+  chassis.drive_distance(0, 120);
   // Take acorn out of zone 
   BackRightFlap.set(true);
-  chassis.drive_distance(20);
+
+  chassis.drive_distance(21.5);
   // Whip it out of zone
-  chassis.turn_to_angle(75);
+  chassis.drive_distance(10, -90);
   BackRightFlap.set(false);
   // Turn back to middle bar and outtake
-  chassis.turn_to_angle(90);
-  chassis.drive_distance(24);
+  wait(3, seconds);
+  chassis.drive_distance(0, 76);
+  wait(0.1, seconds);
+
+  chassis.drive_distance(27);
   Intake.spin(reverse, 100, voltageUnits::volt);
   chassis.drive_distance(10);
   chassis.drive_distance(-1);

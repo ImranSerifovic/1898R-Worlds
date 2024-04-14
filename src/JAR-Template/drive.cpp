@@ -103,7 +103,7 @@ void Drive::set_swing_exit_conditions(float swing_settle_error, float swing_sett
 }
 
 float Drive::get_absolute_heading(){ 
-  return( reduce_0_to_360( Gyro.rotation()*360.0/gyro_scale ) ); 
+  return( reduce_0_to_360( Gyro.rotation()*360.0/gyro_scale) ); 
 }
 
 float Drive::get_left_position_in(){
@@ -132,7 +132,7 @@ void Drive::turn_to_angle(float angle, float turn_max_voltage, float turn_settle
   // finish a turn movement, it will still drive at the angle that was specified in the turn movement.
   PID turnPID(reduce_negative_180_to_180(angle - get_absolute_heading()), turn_kp, turn_ki, turn_kd, turn_starti, turn_settle_error, turn_settle_time, turn_timeout);
   while(turnPID.is_settled() == false){
-    float error = reduce_negative_180_to_180(angle - get_absolute_heading());
+    float error = reduce_negative_180_to_180(angle - get_absolute_heading() + 4);
     // Reducing the angle to a value between -180 and 180 degrees ensures that the robot always takes the 
     // shorter path when making a turn.
     float output = turnPID.compute(error);
