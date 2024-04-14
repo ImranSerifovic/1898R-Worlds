@@ -121,7 +121,8 @@ void autonomous(void) {
   auto_started = true;
   //put auton here
   // pidTest();
-  CloseSideRush();
+  //CloseSideRush();
+  FarSideSafe();
 }
 /*---------------------------------------------------------------------------*/
 
