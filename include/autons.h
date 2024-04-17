@@ -10,5 +10,6 @@ void default_constants();
 //autos
 void FarSideSafe();
 void CloseSideSafe();
-void CloseSideRush();
+void CloseSideRushQual();
+void CloseSideRushElim();
 void pidTest();

@@ -121,8 +121,9 @@ void autonomous(void) {
   auto_started = true;
   //put auton here
   // pidTest();
-  //CloseSideRush();
-  FarSideSafe();
+  // CloseSideRushQual();
+  CloseSideRushElim();
+  // FarSideSafe();
 }
 /*---------------------------------------------------------------------------*/
 
@@ -199,6 +200,7 @@ void usercontrol(void) {
 
     // type of control(currently tank)
     chassis.control_tank();
+    // chassis.control_arcade(); // REVEAL
     wait(20, msec); 
   }
 }
