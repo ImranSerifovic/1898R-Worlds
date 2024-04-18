@@ -264,7 +264,7 @@ void CloseSideRushElim() {
   wait(0.1, seconds);
   Intake.spin(reverse, 100, voltageUnits::volt);
   chassis.drive_distance(29, 80);
-  chassis.drive_distance(-35);
+  chassis.drive_distance(-28);
   chassis.drive_distance(-10, 90);
 
 }
