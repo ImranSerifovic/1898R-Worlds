@@ -113,7 +113,7 @@ void FarSideSafe() {
 
   // outtake intaked acorn
   chassis.turn_to_angle(143.7, 12, 1.5, 0, 650);
-  Intake.spin(reverse, 12, voltageUnits::volt);
+  Intake.spin(reverse, 8, voltageUnits::volt);
   chassis.drive_distance(16);
   wait(0.48, seconds);
 
@@ -135,16 +135,62 @@ void FarSideSafe() {
 }
 
 void fiveballfar() {
+  
+  chassis.set_drive_exit_conditions(1.5, 100, 3000);
+  chassis.set_turn_exit_conditions(2, 100, 5000);
+
   Intake.spin(reverse, 100, voltageUnits::volt);
   wait(0.2,seconds);
   Intake.stop();
 
   BackRightFlap.set(true);
   chassis.drive_distance(15, -15);
-  chassis.turn_to_angle(-45);
+  chassis.turn_to_angle(-90, 12, 0, 1, 700);
+  chassis.turn_to_angle(-40, 12, 0, 1, 500);
   BackRightFlap.set(false);
   wait(0.2, seconds);
-  chassis.drive_distance(15);
+
+  Intake.spin(reverse, 100, voltageUnits::volt);
+
+  chassis.drive_distance(30, -40, 12, 12, 1, 0, 1100);
+  chassis.drive_distance(-15);
+
+  Intake.stop();
+
+  chassis.turn_to_angle(165, 12, 1, 0, 800);
+  chassis.drive_distance(-20, 135, 12, 12, 1, 0, 800);
+  // chassis.drive_distance(-15);
+  // chassis.turn_to_angle(135, 12, 0, 1, 750);
+  // chassis.drive_distance(-20);
+
+  int offset = -135;
+  chassis.drive_distance(13);
+  chassis.turn_to_angle(24.5+offset, 12, 1, 0, 800);
+  Intake.spin(forward, 12, voltageUnits::volt);
+  chassis.drive_distance(48, 25+offset);  
+  wait(0.2, seconds);
+
+  // outtake intaked acorn
+  chassis.turn_to_angle(143.7+offset, 12, 1.5, 0, 650);
+  Intake.spin(reverse, 8, voltageUnits::volt);
+  chassis.drive_distance(16);
+  wait(0.48, seconds);
+
+  // get 2nd acorn
+  chassis.turn_to_angle(41+offset, 12, 1.5, 0, 650);
+  Intake.spin(forward, 12, voltageUnits::volt);
+  chassis.drive_distance(22.5, 41+offset);
+  wait(0.1, seconds);
+
+  //turn, outtake, and score!
+  chassis.turn_to_angle(183+offset, 6, 1.5, 0, 900);
+  flaps.set(true);
+  Intake.spin(reverse, 12, voltageUnits::volt);
+  wait(0.6, seconds);
+  chassis.drive_distance(40, 183+offset, 12, 12, 1, 0, 700);
+  chassis.drive_distance(-10);
+
+
 }
 
 /*---------------------------------------------------------------------------*/  
