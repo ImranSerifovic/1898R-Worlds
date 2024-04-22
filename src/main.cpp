@@ -121,9 +121,9 @@ void autonomous(void) {
   auto_started = true;
   //put auton here
   // pidTest();
-  // CloseSideRushQual();
-  CloseSideRushElim();
-  // FarSideSafe();
+   //CloseSideRushQual();
+  //CloseSideRushElim();
+  FarSideSafe();
 }
 /*---------------------------------------------------------------------------*/
 
@@ -148,6 +148,11 @@ void RightBackFlap() {
   BackRightFlap.set(!BackRightFlap.value());
 }
 
+void BothFlaps() { 
+ BackRightFlap.set(!BackRightFlap.value());
+ BackLeftFlap.set(!BackLeftFlap.value());
+}
+
 // PTO
 void setPTO() { 
   PTO.set(!PTO.value());
@@ -155,7 +160,9 @@ void setPTO() {
 
 // Hang Release
 void HangRelease() {
-  hangRelease.set(!hangRelease.value());
+  hangRelease.set(true);
+  wait(0.2, seconds);
+  hangRelease.set(false);
 }
 
 // Pneumatic Shut-Off
@@ -197,6 +204,7 @@ void usercontrol(void) {
     Controller1.ButtonLeft.pressed(LeftBackFlap);
     Controller1.ButtonB.pressed(setPTO);
     Controller1.ButtonDown.pressed(HangRelease);
+    Controller1.ButtonL1.pressed(BothFlaps);
 
     // type of control(currently tank)
     chassis.control_tank();
