@@ -22,25 +22,30 @@ void default_constants(){
 
 // PID Test
 void pidTest() { 
-  Controller1.Screen.print(Inertial1.heading());
-  Controller1.Screen.print(" ");
-  chassis.drive_distance(15, 90);
-  Controller1.Screen.print(Inertial1.heading());
-  Controller1.Screen.print(" ");
-  chassis.drive_distance(1);
-    chassis.drive_distance(0, 180);
-  chassis.drive_distance(1);
 
-  // chassis.turn_to_angle(180);
+  chassis.drive_distance(30);
+  chassis.turn_to_angle(180);
+  chassis.drive_distance(30);
+  chassis.turn_to_angle(0);
   // Controller1.Screen.print(Inertial1.heading());
-  Controller1.Screen.print(" ");
-  chassis.drive_distance(15, 270);
-    chassis.drive_distance(1);
-  chassis.drive_distance(0, 0);
-    chassis.drive_distance(1);
+  // Controller1.Screen.print(" ");
+  // chassis.drive_distance(15, 90);
+  // Controller1.Screen.print(Inertial1.heading());
+  // Controller1.Screen.print(" ");
+  // chassis.drive_distance(1);
+  //   chassis.drive_distance(0, 180);
+  // chassis.drive_distance(1);
 
-  // chassis.turn_to_angle(0);
-   Controller1.Screen.print(Inertial1.heading());
+  // // chassis.turn_to_angle(180);
+  // // Controller1.Screen.print(Inertial1.heading());
+  // Controller1.Screen.print(" ");
+  // chassis.drive_distance(15, 270);
+  //   chassis.drive_distance(1);
+  // chassis.drive_distance(0, 0);
+  //   chassis.drive_distance(1);
+
+  // // chassis.turn_to_angle(0);
+  //  Controller1.Screen.print(Inertial1.heading());
   // chassis.turn_to_angle(180);
   // Controller1.Screen.print(Inertial1.angle());
 
@@ -128,13 +133,38 @@ void FarSideSafe() {
 
 
 }
+
+void fiveballfar() {
+  Intake.spin(reverse, 100, voltageUnits::volt);
+  wait(0.2,seconds);
+  Intake.stop();
+
+  BackRightFlap.set(true);
+  chassis.drive_distance(15, -15);
+  chassis.turn_to_angle(-45);
+  BackRightFlap.set(false);
+  wait(0.2, seconds);
+  chassis.drive_distance(15);
+}
+
 /*---------------------------------------------------------------------------*/  
 /*                            CLOSE SIDE SAFE                                */
 /*---------------------------------------------------------------------------*/  
 void CloseSideSafe() { 
   Intake.spin(reverse, 100, voltageUnits::volt);
   wait(0.3,seconds);
-  Intake.stop();
+  // Intake.stop();
+
+  BackRightFlap.set(true);
+  wait(0.2, seconds);
+  chassis.turn_to_angle(-90, 12, 1, 300, 800);
+  BackRightFlap.set(false);
+  chassis.turn_to_angle(-15, 12, 1, 300, 600);
+  wait(8, seconds);
+  chassis.drive_distance(20, -35);
+  chassis.drive_distance(20, -35);
+  chassis.drive_distance(-1.5);
+
 }
 /*---------------------------------------------------------------------------*/  
 /*                            CLOSE SIDE RUSH                                */

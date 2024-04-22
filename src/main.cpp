@@ -123,7 +123,9 @@ void autonomous(void) {
   // pidTest();
    //CloseSideRushQual();
   //CloseSideRushElim();
-  FarSideSafe();
+  // FarSideSafe();
+  // CloseSideSafe();
+  fiveballfar();
 }
 /*---------------------------------------------------------------------------*/
 
