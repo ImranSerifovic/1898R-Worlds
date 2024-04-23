@@ -19,7 +19,7 @@ competition Competition;
 // BackLeftFlap         digital_out   C               
 // BackRightFlap        digital_out   B               
 // PTO                  digital_out   F               
-// flaps                digital_out   A               
+// flaps                digital_out   D               
 // hangRelease          digital_out   G               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
@@ -121,11 +121,11 @@ void autonomous(void) {
   auto_started = true;
   //put auton here
   // pidTest();
-   //CloseSideRushQual();
-  //CloseSideRushElim();
-  // FarSideSafe();
+  //  CloseSideRushQual();
+  // CloseSideRushElim();
+  FarSideSafe();
   // CloseSideSafe();
-  fiveballfar();
+  // fiveballfar();
 }
 /*---------------------------------------------------------------------------*/
 

@@ -68,68 +68,138 @@ void FarSideSafe() {
   chassis.set_turn_exit_conditions(2, 0, 5000);
   // Drop intake
   Intake.spin(reverse, 100, voltageUnits::volt); 
-  wait(0.2,seconds);
+  wait(0.3,seconds);
   Intake.spin(forward, 100, voltageUnits::volt);
   // Intake first acorn under barrier 
-  chassis.drive_distance(7);
+  chassis.drive_distance(9);
   wait(0.1, seconds);
   Intake.spin(forward, 7, voltageUnits::volt);
   // Back up 
-  chassis.drive_distance(-29.8, 0, 10, 12);
+  chassis.drive_distance(-34, 0, 10, 12);
+  wait(0.3, seconds);
 
   // all descore mvmts
-  chassis.turn_to_angle(-44, 12, 1, 0, 750);
+  chassis.turn_to_angle(200, 12, 1, 0, 500);
+  // flaps.set(true);
+  chassis.turn_to_angle(185, 12, 1, 100, 300);
+  chassis.drive_distance(15, 140);
+
+  int offset = 135;
+
+
   BackLeftFlap.set(true);
-  chassis.drive_distance(-9, -44, 12, 0, 1, 0, 850);
-  chassis.drive_distance(-10, -90);
-  chassis.turn_to_angle(-50, 4, 1, 0, 400);
 
-  // score acorns
-  BackLeftFlap.set(false);
-  chassis.drive_distance(-50, -90, 12, 12, 1, 0, 1000);
-  
-  // 100 msecs is lowest these exit conditions should go
-  chassis.set_drive_exit_conditions(1.5, 100, 3000);
-  chassis.set_turn_exit_conditions(2, 100, 5000);
+  BackRightFlap.set(true);
 
-  // score acorn in intake
-  chassis.drive_distance(14); 
-  chassis.turn_to_angle(100, 12, 1, 100, 1000);
-  Intake.spin(reverse, 12, voltageUnits::volt);
-  wait(0.3, seconds);
-  chassis.drive_distance(15, 90, 12, 12, 1, 100, 550);
+  Intake.spin(reverse, 100, voltageUnits::volt);
+
+  chassis.drive_distance(17.5, -15+offset);
+  chassis.turn_to_angle(-90+offset, 12, 0, 1, 700);
+  chassis.turn_to_angle(-40+offset, 12, 0, 1, 500);
+  BackRightFlap.set(false);
+  wait(0.2, seconds);
 
 
-  chassis.set_drive_exit_conditions(1.5, 0, 3000);
-  chassis.set_turn_exit_conditions(2, 0, 5000);
+  chassis.drive_distance(30, -40+offset, 12, 12, 1, 0, 1100);
+  chassis.drive_distance(-15);
 
+  Intake.stop();
 
-  // aim at and intake 1st mid bar acorn
-  chassis.drive_distance(-13);
-  chassis.turn_to_angle(24.5, 12, 1, 0, 800);
+  chassis.turn_to_angle(165+offset, 12, 1, 0, 800);
+  chassis.drive_distance(-20, 135+offset, 12, 12, 1, 0, 800);
+  // chassis.drive_distance(-15);
+  // chassis.turn_to_angle(135, 12, 0, 1, 750);
+  // chassis.drive_distance(-20);
+
+  offset = 0;
+  chassis.drive_distance(13);
+  chassis.turn_to_angle(26+offset, 12, 1, 0, 800);
   Intake.spin(forward, 12, voltageUnits::volt);
-  chassis.drive_distance(48, 25);  
+  chassis.drive_distance(48, 26+offset);  
   wait(0.2, seconds);
 
   // outtake intaked acorn
-  chassis.turn_to_angle(143.7, 12, 1.5, 0, 650);
-  Intake.spin(reverse, 8, voltageUnits::volt);
+  chassis.turn_to_angle(146+offset, 12, 1.5, 0, 650);
   chassis.drive_distance(16);
-  wait(0.48, seconds);
+  Intake.spin(reverse, 8, voltageUnits::volt);
+  wait(0.58, seconds);
 
   // get 2nd acorn
-  chassis.turn_to_angle(41, 12, 1.5, 0, 650);
+  chassis.turn_to_angle(47+offset, 12, 1.5, 0, 650);
   Intake.spin(forward, 12, voltageUnits::volt);
-  chassis.drive_distance(22.5, 41);
+  chassis.drive_distance(22.5, 45+offset);
   wait(0.1, seconds);
 
   //turn, outtake, and score!
-  chassis.turn_to_angle(183, 6, 1.5, 0, 900);
+  chassis.turn_to_angle(183+offset, 6, 1.5, 0, 900);
   flaps.set(true);
   Intake.spin(reverse, 12, voltageUnits::volt);
   wait(0.6, seconds);
-  chassis.drive_distance(40, 183, 12, 12, 1, 0, 700);
+  chassis.drive_distance(40, 183+offset, 12, 12, 1, 0, 700);
   chassis.drive_distance(-10);
+
+
+
+
+
+
+
+
+
+
+
+
+  // chassis.drive_distance(9, -44+offset, 12, 0, 1, 0, 850);
+  // chassis.drive_distance(10, -90+offset);
+  // chassis.turn_to_angle(50+offset, 4, 1, 0, 400);
+
+  // // score acorns
+  // BackLeftFlap.set(false);
+  // chassis.drive_distance(50, -90+offset, 12, 12, 1, 0, 1000);
+  
+  // // 100 msecs is lowest these exit conditions should go
+  // chassis.set_drive_exit_conditions(1.5, 100, 3000);
+  // chassis.set_turn_exit_conditions(2, 100, 5000);
+
+  // return;
+  // // score acorn in intake
+  // chassis.drive_distance(14);
+  // chassis.turn_to_angle(100, 12, 1, 100, 1000);
+  // Intake.spin(reverse, 12, voltageUnits::volt);
+  // wait(0.3, seconds);
+  // chassis.drive_distance(15, 90, 12, 12, 1, 100, 550);
+
+
+  // chassis.set_drive_exit_conditions(1.5, 0, 3000);
+  // chassis.set_turn_exit_conditions(2, 0, 5000);
+
+
+  // // aim at and intake 1st mid bar acorn
+  // chassis.drive_distance(-13);
+  // chassis.turn_to_angle(24.5, 12, 1, 0, 800);
+  // Intake.spin(forward, 12, voltageUnits::volt);
+  // chassis.drive_distance(48, 25);  
+  // wait(0.2, seconds);
+
+  // // outtake intaked acorn
+  // chassis.turn_to_angle(143.7, 12, 1.5, 0, 650);
+  // Intake.spin(reverse, 8, voltageUnits::volt);
+  // chassis.drive_distance(16);
+  // wait(0.48, seconds);
+
+  // // get 2nd acorn
+  // chassis.turn_to_angle(41, 12, 1.5, 0, 650);
+  // Intake.spin(forward, 12, voltageUnits::volt);
+  // chassis.drive_distance(22.5, 41);
+  // wait(0.1, seconds);
+
+  // //turn, outtake, and score!
+  // chassis.turn_to_angle(183, 6, 1.5, 0, 900);
+  // flaps.set(true);
+  // Intake.spin(reverse, 12, voltageUnits::volt);
+  // wait(0.6, seconds);
+  // chassis.drive_distance(40, 183, 12, 12, 1, 0, 700);
+  // chassis.drive_distance(-10);
 
 
 }
@@ -198,17 +268,21 @@ void fiveballfar() {
 /*---------------------------------------------------------------------------*/  
 void CloseSideSafe() { 
   Intake.spin(reverse, 100, voltageUnits::volt);
-  wait(0.3,seconds);
-  // Intake.stop();
+  wait(.3,seconds);
+  Intake.stop();
+  wait(7.5, seconds);
 
   BackRightFlap.set(true);
   wait(0.2, seconds);
-  chassis.turn_to_angle(-90, 12, 1, 300, 800);
+  chassis.turn_to_angle(-100, 12, 1, 300, 800);
   BackRightFlap.set(false);
-  chassis.turn_to_angle(-15, 12, 1, 300, 600);
-  wait(8, seconds);
-  chassis.drive_distance(20, -35);
-  chassis.drive_distance(20, -35);
+  Intake.spin(reverse, 100, voltageUnits::volt);
+  chassis.turn_to_angle(-25, 12, 1, 300, 600);
+  flaps.set(true);
+  wait(0.3, seconds);
+  flaps.set(false);
+  chassis.drive_distance(20, -40);
+  chassis.drive_distance(23, -40);
   chassis.drive_distance(-1.5);
 
 }
@@ -244,37 +318,40 @@ void CloseSideRushQual() {
   chassis.drive_distance(-37);
   chassis.drive_distance(-8, 90, 12, 8);
   chassis.drive_distance(-14);
-  chassis.drive_distance(-15, 170, 10, 12, 1.5, 300, 1200);
+  chassis.drive_distance(-13, 170, 10, 12, 1.5, 300, 1200);
 
   // chassis.drive_distance(-10, 180);
   // Turn so that the back is parallel with the goal 
   // chassis.drive_distance( -20,  0,  12,  8);
 
 
-  chassis.drive_distance(10, 160);
+  chassis.drive_distance(8, 160);
   // Turn to be parallel with match bar
   chassis.drive_distance(0, 122);
   // Take acorn out of zone 
   BackRightFlap.set(true);
 
-  chassis.drive_distance(16.5);
+  chassis.drive_distance(17.7);
   // Whip it out of zone
   chassis.drive_distance(3, 60, 12, 12, 1, 300, 1500);
   chassis.drive_distance(5);
-  chassis.drive_distance(0, -60);
+  chassis.drive_distance(0, -50);
   // chassis.drive_distance(0, -90);
 
   BackRightFlap.set(false);
   // Turn back to middle bar and outtake
-  chassis.turn_to_angle(97, 12, 1.5, 300, 1000);
+  chassis.turn_to_angle(93, 12, 1.5, 300, 1000);
+  flaps.set(true);
   Intake.stop();
   inertial_read();
 
-  wait(0.1, seconds);
+  wait(1.1, seconds);
 
   chassis.drive_distance(25, 80);
+  flaps.set(false);
+  wait(0.3, seconds);
   Intake.spin(reverse, 100, voltageUnits::volt);
-  chassis.drive_distance(10);
+  chassis.drive_distance(12);
   chassis.drive_distance(-3);
 }
 
@@ -318,29 +395,31 @@ void CloseSideRushElim() {
   // Turn so that the back is parallel with the goal 
   // chassis.drive_distance( -20,  0,  12,  8);
 
-  chassis.drive_distance(13, 160);
+  chassis.drive_distance(8, 160);
   // Turn to be parallel with match bar
-  chassis.turn_to_angle(110, 12, 1.5, 100, 700);
+  chassis.turn_to_angle(112, 12, 1.5, 100, 700);
   // Take acorn out of zone 
   BackRightFlap.set(true);
 
-  chassis.drive_distance(16.5);
+  chassis.drive_distance(17.7);
   // Whip it out of zone
   chassis.drive_distance(3, 60, 12, 12, 1, 300, 1500);
   chassis.drive_distance(5);
-  chassis.turn_to_angle(-50, 12, 1.5, 300, 700);
+  chassis.turn_to_angle(-40, 12, 1.5, 300, 700);
   // chassis.drive_distance(0, -90);
 
   BackRightFlap.set(false);
   // Turn back to middle bar and outtake
-  chassis.turn_to_angle(120, 12, 1.5, 300, 800);
+  chassis.turn_to_angle(100, 12, 1.5, 300, 800);
   Intake.stop();
   inertial_read();
-
+  flaps.set(true);
   wait(0.1, seconds);
   Intake.spin(reverse, 100, voltageUnits::volt);
   chassis.drive_distance(29, 80);
-  chassis.drive_distance(-28);
+  flaps.set(false);
+  wait(0.3, seconds);
+  chassis.drive_distance(-33);
   chassis.drive_distance(-10, 90);
 
 }
