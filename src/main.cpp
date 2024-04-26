@@ -122,8 +122,8 @@ void autonomous(void) {
   //put auton here
   // pidTest();
   //  CloseSideRushQual();
-  // CloseSideRushElim();
-  FarSideSafe();
+  CloseSideRushElim();
+  // FarSideSafe();
   // CloseSideSafe();
   // fiveballfar();
 }
@@ -204,7 +204,7 @@ void usercontrol(void) {
     Controller1.ButtonL2.pressed(Flaps);
     Controller1.ButtonA.pressed(RightBackFlap);
     Controller1.ButtonLeft.pressed(LeftBackFlap);
-    Controller1.ButtonB.pressed(setPTO);
+    Controller1.ButtonY.pressed(setPTO);
     Controller1.ButtonDown.pressed(HangRelease);
     Controller1.ButtonL1.pressed(BothFlaps);
 

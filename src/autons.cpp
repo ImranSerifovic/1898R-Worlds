@@ -270,9 +270,10 @@ void CloseSideSafe() {
   Intake.spin(reverse, 100, voltageUnits::volt);
   wait(.3,seconds);
   Intake.stop();
+  BackRightFlap.set(true);
+
   wait(7.5, seconds);
 
-  BackRightFlap.set(true);
   wait(0.2, seconds);
   chassis.turn_to_angle(-100, 12, 1, 300, 800);
   BackRightFlap.set(false);
